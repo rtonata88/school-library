@@ -6,15 +6,15 @@ class Person
         @age = age
     end
 
-    def get_id()
+    def get_id
         return @id
     end
 
-     def get_name()
+     def get_name
         return @name
     end
 
-    def get_age()
+    def get_age
         return @age
     end
 
@@ -26,13 +26,21 @@ class Person
         @age = age
     end
 
+    def can_use_services?
+        if is_of_age? && parent_permission
+            return true;
+        else 
+            return false;
+        end
+    end
+
     private
 
-    def is_of_age()
+    def is_of_age?
         if @age >= 18
             return true
         else 
-            false
+            return false
         end
     end
 end
