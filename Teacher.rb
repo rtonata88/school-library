@@ -2,7 +2,7 @@ require "./Person.rb"
 class Teacher < Person
     initialize(specialization)
         super()
-        @specialization = @specialization
+        @specialization = specialization
     end
 
     def can_use_services?
