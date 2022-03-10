@@ -1,11 +1,13 @@
-require "./Person.rb"
-class Teacher < Person
-    initialize(specialization)
-        super()
-        @specialization = specialization
-    end
+require './Person'
 
-    def can_use_services?
-        return true
-    end
+# Defines the Teacher class
+class Teacher < Person
+  def initialize(specialization)
+    super()
+    @specialization = specialization
+  end
+
+  def can_use_services?
+    true
+  end
 end
