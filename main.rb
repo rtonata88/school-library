@@ -55,6 +55,25 @@ class Main
         if @people then @people.each {|person| puts person } end
     end
 
+    #3. Create a person
+    def create_person
+        puts "Do you want to create a (1) student or a (2) teacher [input the number]:"
+        print "Title: "
+        option = gets.chomp.to_i
+        
+        case option
+        when 1
+            add_student
+        when 2
+            add_teacher
+        else
+            puts "Invalid option selected, please select a valid option"
+        end
+        
+        #Display app main menu
+        start_menu
+    end
+
 end
 
 main = Main.new
