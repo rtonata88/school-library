@@ -45,7 +45,10 @@ class Main
         puts "7. Exit"
     end
 
-end
+    #1. List all books
+    def list_all_books
+        if @books then @books.each {|book| puts "#{book.title} - #{book.author}" } end
+    end
 
 main = Main.new
 main.start_menu()
