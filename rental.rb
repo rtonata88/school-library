@@ -1,12 +1,12 @@
-#Defines the Rental class blueprint
+# Defines the Rental class blueprint
 class Rental
-    def initialize(date, person, book)
-        @date = date
-        @person = person
-        @book = book
+  def initialize(date, person, book)
+    @date = date
+    @person = person
+    @book = book
 
-        person.rentals << self
-    end
+    person.rentals << self
+  end
 
-    attr_accessor :date, :person, :book
+  attr_accessor :date, :person, :book
 end

@@ -1,14 +1,13 @@
-
-#defines the Classroom class
+# defines the Classroom class
 class Classroom
-    def initialize(label)
-        @label = label
-        @students = []
-    end
+  def initialize(label)
+    @label = label
+    @students = []
+  end
 
-    attr_accessor :label
+  attr_accessor :label
 
-    def add_student(student)
-        @students << student
-    end
+  def add_student(student)
+    @students << student
+  end
 end
