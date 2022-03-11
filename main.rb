@@ -50,5 +50,12 @@ class Main
         if @books then @books.each {|book| puts "#{book.title} - #{book.author}" } end
     end
 
+    #2. List all people
+    def list_all_people
+        if @people then @people.each {|person| puts person } end
+    end
+
+end
+
 main = Main.new
 main.start_menu()
