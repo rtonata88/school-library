@@ -1,5 +1,7 @@
+require './nameable'
+
 # Defines the Person class
-class Person
+class Person < Nameable
   def initialize(id, age, name = 'Unknown', parent_permission: true)
     @id = id
     @name = name
@@ -16,6 +18,10 @@ class Person
     else
       false
     end
+  end
+
+  def correct_name
+    @name
   end
 
   private
