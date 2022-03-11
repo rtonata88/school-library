@@ -1,5 +1,6 @@
 require './nameable'
 
+#Defines the base decorator
 class Decorator
     initialize(nameable)
         @nameable = nameable
