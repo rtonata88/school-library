@@ -144,7 +144,7 @@ class Main
   def add_rental
     puts "\n"
     @people.each_with_index do |person, index|
-      puts "#{index}. #{person.name}"
+      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
     puts "\n"
     print 'Select the person from the list above [input number]:'
@@ -153,7 +153,7 @@ class Main
     person = @people[selected_person]
 
     @books.each_with_index do |book, index|
-      puts "#{index}. #{book.title} by #{book.author}"
+      puts "#{index}) Title: #{book.title},  Author: #{book.author}"
     end
     print 'Select the book from the list above [input number]:'
     selected_book = gets.chomp.to_i
@@ -186,7 +186,7 @@ class Main
     person_id = gets.chomp.to_i
     person = @rentals.select { |p| p.person.id == person_id }
     # rentals = person.rentals
-    person.each { |rental| puts "Date: #{rental.date} Book: #{rental.book.title}, Author: #{rental.book.author}" }
+    person.each { |rental| puts "Date: #{rental.date}, Book: #{rental.book.title}, Author: #{rental.book.author}" }
 
     # Display app main menu
     start_menu
