@@ -1,11 +1,14 @@
 require './nameable'
+require './rental'
 require './capitalize_decorator'
 require './trimmer_decorator'
 
 # Defines the Person class
-class Person < Nameable
-  def initialize(age, name = 'Unknown', parent_permission: true)
-    super()
+class Person
+  attr_reader :id, :rentals, :parent_permission
+  attr_accessor :name, :age
+
+  def initialize(age, name: 'Unknown', parent_permission: true)
     @id = rand(1..100)
     @name = name
     @age = age
@@ -13,11 +16,8 @@ class Person < Nameable
     @rentals = []
   end
 
-  attr_reader :id
-  attr_accessor :name, :age, :rentals
-
-  def add_rental(book, date)
-    @rentals << Rental.new(date, self, book)
+  def add_rentals(date, book)
+    rentals << Rental.new(date, book, self)
   end
 
   def can_use_services?
@@ -38,10 +38,3 @@ class Person < Nameable
     @age >= 18
   end
 end
-
-person = Person.new(22, 'maximilianus')
-puts person.correct_name
-capitalized_person = CapitalizeDecorator.new(person)
-puts capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
-puts capitalized_trimmed_person.correct_name

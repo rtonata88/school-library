@@ -1,6 +1,8 @@
+require './rental'
 # Defines the Book class blueprint
 class Book
   attr_accessor :title, :author
+  attr_reader :rentals
 
   def initialize(title, author)
     @title = title
@@ -8,7 +10,8 @@ class Book
     @rentals = []
   end
 
-  def rent_out(person, date)
-    @rentals << Rental.new(date, person, self)
-  end    
+  def add_rental(person, date)
+    rental = Rental.new(date, self, person)
+    @rentals.push(rental)
+  end
 end
