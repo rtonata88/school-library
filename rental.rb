@@ -1,3 +1,5 @@
+require './person'
+require './book'
 # Defines the Rental class blueprint
 class Rental
   attr_accessor :date
@@ -7,10 +9,9 @@ class Rental
     @date = date
 
     @book = book
-    # book.rentals << self unless book.rentals.include?(self)
+    book.rentals << self unless book.rentals.include?(self)
 
     @person = person
-    puts "Person methods: #{person.methods}"
-    person.person_rentals << self unless person.person_rentals.include?(self)
+    person.rentals << self unless person.rentals.include?(self)
   end
 end

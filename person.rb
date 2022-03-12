@@ -17,7 +17,8 @@ class Person
   end
 
   def add_rentals(date, book)
-    rentals << Rental.new(date, book, self)
+    rental = Rental.new(date, self, book)
+    rentals.push(rental)
   end
 
   def can_use_services?

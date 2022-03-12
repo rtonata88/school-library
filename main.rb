@@ -29,10 +29,8 @@ class Main
       add_rental
     when 6 # List all rentals a given person ID
       list_rentals_by_person
-    when 7 # Exit
+    else # Exit
       puts 'Goodbye :-)'
-    else
-      puts 'Invalid option selected, please select a valid option'
     end
   end
 
@@ -50,11 +48,10 @@ class Main
   # 1. List all books
   def list_all_books
     puts "\n \n"
-    if @books.length > 1
-    then @books.each { |book| 
-        puts "#{book.title} - #{book.author}" }
-    else 
-        puts 'No books to display'
+    if @books.length.zero?
+      puts 'No books to display'
+    else
+      @books.map { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
     puts "\n \n"
 
@@ -65,11 +62,10 @@ class Main
   # 2. List all people
   def list_all_people
     puts "\n \n"
-    if @people.length > 1 
-    then @people.each  {|person|
-         "[#{person.class.name}] - #{person.name} (#{person.age})"}
+    if @people.count.zero?
+      puts 'No people to display'
     else
-        puts 'No people to display' 
+      @people.map { |person| puts "[#{person.class}] Name: #{person.name} ID: #{person.id} Age: #{person.age}" }
     end
     puts "\n \n"
 
@@ -104,13 +100,9 @@ class Main
 
     print 'Has parent permission? [Y/N]: '
     parent_permission_input = gets.chomp.downcase
-    parent_permission = true;
-    if parent_permission_input == 'y'
-    then parent_permission = true 
-    else parent_permission = false
-    end
+    parent_permission = (parent_permission_input == 'y')
 
-    @people << Student.new(age, name, parent_permission)
+    @people << Student.new(age, name, parent_permission: parent_permission)
     puts "\n \n"
     puts 'Student created successfully!!!'
     puts "\n \n"
@@ -128,9 +120,9 @@ class Main
     print 'Specialization: '
     specialization = gets.chomp
 
-    @people << Teacher.new(age, name, specialization)
+    @people << Teacher.new(age, specialization, name)
     puts "\n \n"
-    puts 'Student created successfully!!!'
+    puts 'Teacher created successfully!!!'
     puts "\n \n"
     start_menu
   end
@@ -155,7 +147,7 @@ class Main
       puts "#{index}. #{person.name}"
     end
     puts "\n"
-    print 'Select the person from the list below [input number]:'
+    print 'Select the person from the list above [input number]:'
 
     selected_person = gets.chomp.to_i
     person = @people[selected_person]
@@ -171,8 +163,8 @@ class Main
     date = gets.chomp
 
     # Add book to rentals
-    book.add_rentals(date, person)
-
+    new_rental = Rental.new(date, person, book)
+    @rentals << new_rental
     puts "Rental successfully created !!! \n \n"
 
     # Display app main menu
@@ -182,7 +174,6 @@ class Main
   # 6. List all rentals for a given person ID
   def list_rentals_by_person
     puts "\n \n"
-    puts @people
     if @people.length
       @people.each do |person|
         puts "[#{person.class.name}] - ID: #{person.id}, Name: #{person.name}, Age: (#{person.age})"
@@ -193,9 +184,9 @@ class Main
     puts "\n \n"
     print 'Enter Person ID: '
     person_id = gets.chomp.to_i
-    person = @people.select { |p| p.id == person_id }
-    rentals = person.person_rentals
-    rentals.each { |rental| puts rental }
+    person = @rentals.select { |p| p.person.id == person_id }
+    # rentals = person.rentals
+    person.each { |rental| puts "Date: #{rental.date} Book: #{rental.book.title}, Author: #{rental.book.author}" }
 
     # Display app main menu
     start_menu

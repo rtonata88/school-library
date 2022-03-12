@@ -1,11 +1,11 @@
-require './Person'
+require './person'
 
 # Defines the Teacher class
 class Teacher < Person
- attr_reader :specialization
+  attr_reader :specialization
 
-  def initialize(age, specialization, name: 'Unknown', parent_permission: true)
-    super(age, name: name, parent_permission: parent_permission)
+  def initialize(age, specialization, name = 'Unknown')
+    super(age, name: name)
     @specialization = specialization
   end
 
