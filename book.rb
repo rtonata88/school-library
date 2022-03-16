@@ -14,4 +14,8 @@ class Book
     rental = Rental.new(date, person, self)
     @rentals.push(rental)
   end
+
+  def list(books)
+    
+  end
 end
