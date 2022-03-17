@@ -88,7 +88,6 @@ class App
     author = gets.chomp
     @books << Book.new(title, author)
     puts "#{title} by #{author} created successfully!!!"
-
   end
 
   # 5. Create a rental
