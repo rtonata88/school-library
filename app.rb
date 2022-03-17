@@ -4,57 +4,56 @@ require './book'
 require './rental'
 
 class App
+  def initialize
+    @books = []
+    @people = []
+    @rentals = []
+  end
 
-    def initialize
-        @books = []
-        @people = []
-        @rentals = []
+  def start_menu
+    puts 'Please choose an option by entering a number:'
+    puts '1. List all books'
+    puts '2. List all people'
+    puts '3. Create a person'
+    puts '4. Create a book'
+    puts '5. Create a rental'
+    puts '6. List all rentals for a given person ID'
+    puts '7. Exit'
+  end
+
+  def start
+    start_menu
+    @option = gets.chomp
+
+    case @option.to_i
+    when 1 # List all books
+      list_all_books
+    when 2 # List all people
+      list_all_people
+    when 3 # Create a person
+      create_person
+    when 4 # Create a book
+      create_book
+    when 5 # Create a rental
+      add_rental
+    when 6 # List all rentals a given person ID
+      list_rentals_by_person
+    else # Exit
+      puts 'Goodbye :-)'
     end
+  end
 
-    def start_menu
-        puts 'Please choose an option by entering a number:'
-        puts '1. List all books'
-        puts '2. List all people'
-        puts '3. Create a person'
-        puts '4. Create a book'
-        puts '5. Create a rental'
-        puts '6. List all rentals for a given person ID'
-        puts '7. Exit'
+  # 1. List all books
+  def list_all_books
+    puts "\n \n"
+    if @books.length.zero?
+      puts 'No books to display'
+    else
+      @books.map { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
+    puts "\n \n"
 
-    def start
-        start_menu
-        @option = gets.chomp
-
-        case @option.to_i
-        when 1 # List all books
-        list_all_books
-        when 2 # List all people
-        list_all_people
-        when 3 # Create a person
-        create_person
-        when 4 # Create a book
-        create_book
-        when 5 # Create a rental
-        add_rental
-        when 6 # List all rentals a given person ID
-        list_rentals_by_person
-        else # Exit
-        puts 'Goodbye :-)'
-        end
-    end
-
-    # 1. List all books
-    def list_all_books
-        puts "\n \n"
-        if @books.length.zero?
-        puts 'No books to display'
-        else
-        @books.map { |book| puts "Title: #{book.title}, Author: #{book.author}" }
-        end
-        puts "\n \n"
-
-        # Display app main menu
+    # Display app main menu
     start
   end
 

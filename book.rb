@@ -15,7 +15,5 @@ class Book
     @rentals.push(rental)
   end
 
-  def list(books)
-    
-  end
+  def list(books); end
 end
