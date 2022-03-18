@@ -14,6 +14,7 @@ class FileReader
             JSON.parse(File.read(@datafile)).each do |line|
             file_content << line
         end
+    end
         
         return file_content;
     end

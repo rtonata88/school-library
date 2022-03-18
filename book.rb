@@ -19,15 +19,10 @@ class Book
 
   def save
     data = []
-    self.each do |book|
-      data <<  { { title: book.title, author: book.author } }
-    end
+    data <<   { title: self.title, author: self.author } 
 
     file_writer = FileWriter.new(data, 'books.json')
     file_writer.write
   end
-
-  def list(books); end
-end
-
 #name: person.name, age: person.age, type: person.class, parent_permission: person.parent_permission, specialization: person.specialization
+end
