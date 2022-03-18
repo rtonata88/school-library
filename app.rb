@@ -115,6 +115,7 @@ class App
     # Add book to rentals
     new_rental = Rental.new(date, person, book)
     @rentals << new_rental
+    new_rental.save(@rentals)
     puts "Rental successfully created !!! \n \n"
   end
 

@@ -14,4 +14,16 @@ class Rental
     @person = person
     person.rentals << self unless person.rentals.include?(self)
   end
+
+  def save(rentals)
+    data = []
+    rentals.each do |rental|
+      data <<  {  date: rental.date, 
+                  person: {id: person.id },
+                  book: { title: rental.book.title, author: rental.book.author } }
+    end
+
+    file_writer = FileWriter.new(data, 'rentals.json')
+    file_writer.write
+  end
 end

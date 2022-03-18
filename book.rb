@@ -19,13 +19,11 @@ class Book
 
   def save
     data = []
-    @rentals.each do |rental|
-      data <<  {  date: rental.date, 
-                  person: {id: person.id },
-                  book: { title: rental.book.title, author: rental.book.author } }
+    self.each do |book|
+      data <<  { { title: book.title, author: book.author } }
     end
 
-    file_writer = FileWriter.new(data, 'rentals.json')
+    file_writer = FileWriter.new(data, 'books.json')
     file_writer.write
   end
 
