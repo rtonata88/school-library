@@ -8,7 +8,7 @@ class App
   def initialize
     @books = Book.retrieve
     @people = Person.retrieve
-    @rentals = []
+    @rentals = Rental.retrieve(@people)
   end
 
   # 1. List all books
@@ -28,7 +28,7 @@ class App
     if @people.count.zero?
       puts 'No people to display'
     else
-      @people.map { |person| puts "[#{person.class}] Name: #{person.name} ID: #{person.id} Age: #{person.age}" }
+      @people.map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
     puts "\n \n"
   end
@@ -57,8 +57,8 @@ class App
     print 'Has parent permission? [Y/N]: '
     parent_permission_input = gets.chomp.downcase
     parent_permission = (parent_permission_input == 'y')
-
-    @people << Student.new(age, name, parent_permission: parent_permission)
+    id = rand(1..100)
+    @people << Student.new(age, id, name, parent_permission: parent_permission)
     puts "\n \n"
     puts 'Student created successfully!!!'
     puts "\n \n"
@@ -73,8 +73,8 @@ class App
 
     print 'Specialization: '
     specialization = gets.chomp
-
-    @people << Teacher.new(age, specialization, name)
+    id = rand(1..100)
+    @people << Teacher.new(age, specialization, id, name)
     puts "\n \n"
     puts 'Teacher created successfully!!!'
     puts "\n \n"
@@ -116,7 +116,7 @@ class App
     # Add book to rentals
     new_rental = Rental.new(date, person, book)
     @rentals << new_rental
-    new_rental.save(@rentals)
+
     puts "Rental successfully created !!! \n \n"
   end
 
@@ -140,7 +140,7 @@ class App
 
   def save_all
     Book.save(@books)
-    Student.save(@people)
-    Rentals.save(@rentals)
+    Person.save(@people)
+    Rental.save_to_file(@rentals)
   end
 end
