@@ -1,0 +1,23 @@
+[
+  {
+    "id": 17,
+    "name": "Richard",
+    "age": 34,
+    "type": "Student",
+    "parent_permission": true
+  },
+  {
+    "id": 10,
+    "name": "Unknown",
+    "age": 87,
+    "type": "Teacher",
+    "specialization": "Human Sciences"
+  },
+  {
+    "id": 59,
+    "name": "Hans",
+    "age": 34,
+    "type": "Student",
+    "parent_permission": false
+  }
+]

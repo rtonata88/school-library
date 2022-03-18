@@ -1,3 +1,4 @@
+require './person'
 require './student'
 require './teacher'
 require './book'
@@ -5,9 +6,9 @@ require './rental'
 
 class App
   def initialize
-    @books = []
-    @people = []
-    @rentals = []
+    @books = Book.retrieve
+    @people = Person.retrieve
+    @rentals = Rental.retrieve(@people)
   end
 
   # 1. List all books
@@ -27,7 +28,7 @@ class App
     if @people.count.zero?
       puts 'No people to display'
     else
-      @people.map { |person| puts "[#{person.class}] Name: #{person.name} ID: #{person.id} Age: #{person.age}" }
+      @people.map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     end
     puts "\n \n"
   end
@@ -56,8 +57,8 @@ class App
     print 'Has parent permission? [Y/N]: '
     parent_permission_input = gets.chomp.downcase
     parent_permission = (parent_permission_input == 'y')
-
-    @people << Student.new(age, name, parent_permission: parent_permission)
+    id = rand(1..100)
+    @people << Student.new(age, id, name, parent_permission: parent_permission)
     puts "\n \n"
     puts 'Student created successfully!!!'
     puts "\n \n"
@@ -72,9 +73,8 @@ class App
 
     print 'Specialization: '
     specialization = gets.chomp
-
-    @people << Teacher.new(age, specialization, name)
-
+    id = rand(1..100)
+    @people << Teacher.new(age, specialization, id, name)
     puts "\n \n"
     puts 'Teacher created successfully!!!'
     puts "\n \n"
@@ -86,7 +86,8 @@ class App
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
-    @books << Book.new(title, author)
+    book = Book.new(title, author)
+    @books << book
     puts "#{title} by #{author} created successfully!!!"
   end
 
@@ -115,6 +116,7 @@ class App
     # Add book to rentals
     new_rental = Rental.new(date, person, book)
     @rentals << new_rental
+
     puts "Rental successfully created !!! \n \n"
   end
 
@@ -134,5 +136,11 @@ class App
     person = @rentals.select { |p| p.person.id == person_id }
     # rentals = person.rentals
     person.each { |rental| puts "Date: #{rental.date}, Book: #{rental.book.title}, Author: #{rental.book.author}" }
+  end
+
+  def save_all
+    Book.save(@books)
+    Person.save(@people)
+    Rental.save_to_file(@rentals)
   end
 end

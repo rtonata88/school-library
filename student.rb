@@ -2,10 +2,10 @@ require './person'
 
 # Defines the Student class
 class Student < Person
-  attr_accessor :classroom, :name
+  attr_accessor :classroom, :name, :id
 
-  def initialize(age, name = 'Unknown', parent_permission: true)
-    super(age, name: name, parent_permission: parent_permission)
+  def initialize(age, id = 0, name = 'Unknown', parent_permission: true)
+    super(age, id: id, name: name, parent_permission: parent_permission)
     @classroom = classroom
   end
 

@@ -1,4 +1,6 @@
 require './rental'
+require './file_reader'
+require './file_writer'
 # Defines the Book class blueprint
 class Book
   attr_accessor :title, :author
@@ -15,5 +17,23 @@ class Book
     @rentals.push(rental)
   end
 
-  def list(books); end
+  def self.save(books)
+    data = []
+    books.each do |book|
+      data << { title: book.title, author: book.author }
+    end
+    file_writer = FileWriter.new(data, 'books.json')
+    file_writer.write
+  end
+
+  def self.retrieve
+    books = []
+    file_reader = FileReader.new('books.json')
+    content = file_reader.read
+    content.each do |book|
+      books << Book.new(book['title'], book['author'])
+    end
+
+    books
+  end
 end
