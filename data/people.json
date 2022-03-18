@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Daniel",
+    "age": 34,
+    "type": "Teacher",
+    "parent_permission": true,
+    "specialization": ""
+  },
+  {
+    "name": "Michael",
+    "age": 25,
+    "type": "Student",
+    "parent_permission": true,
+    "specialization": ""
+  },
+  {
+    "name": "James",
+    "age": 23,
+    "type": "Student",
+    "parent_permission": false,
+    "specialization": ""
+  }
+]

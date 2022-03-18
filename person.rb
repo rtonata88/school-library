@@ -1,5 +1,6 @@
 require './nameable'
 require './rental'
+require './file_reader'
 require './capitalize_decorator'
 require './trimmer_decorator'
 
@@ -19,6 +20,22 @@ class Person
   def add_rentals(date, book)
     rental = Rental.new(date, self, book)
     rentals.push(rental)
+  end
+
+    def self.retrieve
+    people = []
+    file_reader = FileReader.new('people.json')
+    content = file_reader.read
+    content.each do |person| 
+      case person['type']
+      when 'Student'
+        people << Student.new(person['age'], person['name'], parent_permission: person['parent_permission'])
+      when 'Teacher'
+        people << Teacher.new(person['age'], person['specialization'], person['name'])
+      end
+    end
+
+    return people
   end
 
   def can_use_services?

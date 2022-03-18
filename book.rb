@@ -17,12 +17,23 @@ class Book
     @rentals.push(rental)
   end
 
-  def save
+  def self.save(books)
     data = []
-    data <<   { title: self.title, author: self.author } 
-
+    books.each do |book|
+        data << {title: book.title, author: book.author}
+    end
     file_writer = FileWriter.new(data, 'books.json')
     file_writer.write
   end
-#name: person.name, age: person.age, type: person.class, parent_permission: person.parent_permission, specialization: person.specialization
+
+  def self.retrieve
+    books = []
+    file_reader = FileReader.new('books.json')
+    content = file_reader.read
+    content.each do |book| 
+       books << Book.new(book['title'], book['author'])
+    end
+
+    return books
+  end
 end

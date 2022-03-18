@@ -8,6 +8,6 @@ class FileWriter
     end
 
     def write
-        File.open(@datafile, 'a+') {|f| f.puts JSON.generate(@file_content)}
+        File.open(@datafile, 'w+') {|f| f.puts JSON.pretty_generate(@file_content)}
     end
 end

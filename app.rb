@@ -1,3 +1,4 @@
+require './person'
 require './student'
 require './teacher'
 require './book'
@@ -5,8 +6,8 @@ require './rental'
 
 class App
   def initialize
-    @books = []
-    @people = []
+    @books = Book.retrieve
+    @people = Person.retrieve
     @rentals = []
   end
 
@@ -74,7 +75,6 @@ class App
     specialization = gets.chomp
 
     @people << Teacher.new(age, specialization, name)
-
     puts "\n \n"
     puts 'Teacher created successfully!!!'
     puts "\n \n"
@@ -88,7 +88,6 @@ class App
     author = gets.chomp
     book = Book.new(title, author)
     @books << book
-    book.save
     puts "#{title} by #{author} created successfully!!!"
   end
 
@@ -137,5 +136,11 @@ class App
     person = @rentals.select { |p| p.person.id == person_id }
     # rentals = person.rentals
     person.each { |rental| puts "Date: #{rental.date}, Book: #{rental.book.title}, Author: #{rental.book.author}" }
+  end
+
+  def save_all
+    Book.save(@books)
+    Student.save(@people)
+    Rentals.save(@rentals)
   end
 end

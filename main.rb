@@ -40,6 +40,7 @@ class Main
     when 6 # List all rentals a given person ID
       @app.list_rentals_by_person
     else
+      @app.save_all
       puts 'Goodbye :-)'
     end
   end
