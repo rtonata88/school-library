@@ -2,13 +2,12 @@ require 'json'
 
 #Generic FileWriter class which receives json content to write to a file
 class FileWriter
-    def initialize(content_object, path: './data')
-        @path = path
-        @content_object = content_object
-        @datafile = @path +  @file
+    def initialize(file_content, filename, path: './data/')
+        @file_content = file_content
+        @datafile = path +  filename
     end
 
     def write
-        File.open(@datafile + '.json', 'w') {|f| f.write(JSON.generate(@content_object))}
+        File.open(@datafile, 'w') {|f| f.write(JSON.generate(@file_content))}
     end
 end

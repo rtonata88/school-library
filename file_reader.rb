@@ -4,8 +4,8 @@ require 'json'
 class FileReader
     def initialize(file, path: './data')
         @path = path
-        @file = file
-        @datafile = @path +  @file
+        @file = file + '.json'
+        @datafile = @path +  @file 
     end
 
     def read
