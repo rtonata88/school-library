@@ -6,8 +6,8 @@ require './trimmer_decorator'
 
 # Defines the Person class
 class Person
-  attr_reader :rentals, :parent_permission
-  attr_accessor :name, :age, :id
+  attr_accessor :name, :age
+  attr_reader :rentals, :id, :parent_permission
 
   def initialize(age, id: 0, name: 'Unknown', parent_permission: true)
     @id = id
