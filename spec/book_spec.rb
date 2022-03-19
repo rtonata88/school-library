@@ -11,19 +11,19 @@ describe Book do
     end
 
     it 'takes two parameters and returns a Book object' do
-        expect(@book).to be_an_instance_of Book
+      expect(@book).to be_an_instance_of Book
     end
 
-    it "returns the correct title" do
-        expect(@book.title).to eql "Lord of the Rings"
+    it 'returns the correct title' do
+      expect(@book.title).to eql 'Lord of the Rings'
     end
 
-    it "returns the correct author" do
-        expect(@book.author).to eql "JRR Tolkiens"
+    it 'returns the correct author' do
+      expect(@book.author).to eql 'JRR Tolkiens'
     end
 
-    it "It is rented out" do 
-        expect(@book.rentals.length).to eq(1)
+    it 'It is rented out' do
+      expect(@book.rentals.length).to eq(1)
     end
   end
 end

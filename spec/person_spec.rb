@@ -11,19 +11,19 @@ describe Person do
     end
 
     it 'takes four parameters and returns a Person object' do
-        expect(@person).to be_an_instance_of Person
+      expect(@person).to be_an_instance_of Person
     end
 
-    it "returns the correct age" do
-        expect(@person.age).to eql 34
+    it 'returns the correct age' do
+      expect(@person.age).to eql 34
     end
 
-     it "returns the correct name" do
-        expect(@person.name).to eql "Richard Chambula"
+    it 'returns the correct name' do
+      expect(@person.name).to eql 'Richard Chambula'
     end
 
-    it "To have rented out a book" do 
-        expect(@person.rentals.length).to eq(1)
+    it 'To have rented out a book' do
+      expect(@person.rentals.length).to eq(1)
     end
   end
 end
